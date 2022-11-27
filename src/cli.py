@@ -93,12 +93,12 @@ class CLI:
     tol = self.args.tol or input("Tolerância: ") 
 
     print("\n")
-    raiz, iteracoes = self.bisect(f, float(x0), float(x1), float(tol))
+    raiz, iteracao = self.bisect(f, float(x0), float(x1), float(tol))
 
     
     print(f"Função: {func}")
     print(f"x0: {x0}")
     print(f"x1: {x1}")
     print(f"Tolerância: {tol}") 
-    print(f"\nA raiz é {BOLD}{OKGREEN}{raiz}{ENDC} com {BOLD}{OKGREEN}{iteracoes}{ENDC} iterações") 
+    print(f"\nA raiz é {BOLD}{OKGREEN}{raiz}{ENDC} com {BOLD}{OKGREEN}{iteracao}{ENDC} iterações") 
     print("-" * 30 + "\n") 
