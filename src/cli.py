@@ -46,7 +46,7 @@ class CLI:
 
     return parser.parse_args()
 
-  def bisect(self, f, a, b, tol=1.0e-9):
+  def bisect(self, f, a, b, tol):
     fa = f(a)
     if fa == 0.0: return a
     fb = f(b)
@@ -68,6 +68,8 @@ class CLI:
         iteracao += 1
         print(f"Iteração {iteracao}\nx{iteracao} = {c}") 
         print("-" * 30) 
+
+        if abs(b-a) < tol: return c, iteracao
 
     return 0.5*(a + b), iteracao
 
