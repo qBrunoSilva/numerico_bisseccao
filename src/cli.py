@@ -55,8 +55,8 @@ class CLI:
 
     n = int(ceil(log(abs(b-a)/tol)/log(2.0))) 
     
-    for k in range(n):
-        
+    iteracao = 0
+    for _ in range(n): 
         c = 0.5*(a + b) 
         fc = f(c)
         if fc == 0.0: return c
@@ -64,16 +64,15 @@ class CLI:
             b = c; fb = fc
         else:
             a = c; fa = fc
+            
+        iteracao += 1
+        print(f"Iteração {iteracao}\nx{iteracao} = {c}") 
+        print("-" * 30) 
 
-        print(f"Iteração {k+1}\nx{k+1} = {c}") 
-        print("-" * 30)
-
-
-    return 0.5*(a + b), n
+    return 0.5*(a + b), iteracao
 
           
-  def format_function(self, f):
-    # TODO: Tratar funções cujo a variável é diferente de x
+  def format_function(self, f): 
     f = f.replace("^", "**")
     f = f.replace("sen", "sin")
     f = f.replace("ln", "log") 
@@ -101,9 +100,5 @@ class CLI:
     print(f"x0: {x0}")
     print(f"x1: {x1}")
     print(f"Tolerância: {tol}") 
-    print(f"\nA raiz é {BOLD}{OKGREEN}{raiz}{ENDC} com {BOLD}{OKGREEN}{iteracoes}{ENDC} iterações")
-
-
-    print("-" * 30 + "\n")
-
-
+    print(f"\nA raiz é {BOLD}{OKGREEN}{raiz}{ENDC} com {BOLD}{OKGREEN}{iteracoes}{ENDC} iterações") 
+    print("-" * 30 + "\n") 
