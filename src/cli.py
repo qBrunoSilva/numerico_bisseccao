@@ -84,7 +84,7 @@ class CLI:
   def run(self) -> None:
     # Executa o programa 
 
-    func = self.args.f or input('Digite a função: ')
+    func = self.args.f or input('Digite a f(x): ')
     func = self.format_function(func)
 
     f =  eval(f"lambda x: {func}")
