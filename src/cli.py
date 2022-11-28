@@ -46,20 +46,20 @@ class CLI:
 
     return parser.parse_args()
 
-  def bisect(self, f, a, b, tol):
-    fa = f(a)
-    if fa == 0.0: return a
-    fb = f(b)
-    if fb == 0.0: return b
-    if fa*fb > 0.0: raise Exception(f"{FAIL}Nenhuma raiz encontrada{ENDC}")
-
-    n = int(ceil(log(abs(b-a)/tol)/log(2.0))) 
-    
+  def bisect(self, f: float, a: float, b: float, tol: float):
     iteracao = 0
-    for _ in range(n): 
-        c = 0.5*(a + b) 
+
+    fa = f(a)
+    if fa == 0.0: return a, iteracao
+    fb = f(b)
+    if fb == 0.0: return b, iteracao
+
+    if fa*fb > 0.0: raise Exception(f"{FAIL}Nenhuma raiz encontrada{ENDC}")
+    
+    while True: 
+        c = (a + b) / 2
         fc = f(c)
-        if fc == 0.0: return c
+        if fc == 0.0: return c, iteracao
         if fa*fc < 0.0:
             b = c; fb = fc
         else:
@@ -70,10 +70,7 @@ class CLI:
         print("-" * 30) 
 
         if abs(b-a) < tol: return c, iteracao
-
-    return 0.5*(a + b), iteracao
-
-          
+         
   def format_function(self, f): 
     f = f.replace("^", "**")
     f = f.replace("sen", "sin")
@@ -96,7 +93,6 @@ class CLI:
 
     print("\n")
     raiz, iteracao = self.bisect(f, float(x0), float(x1), float(tol))
-
     
     print(f"Função: {func}")
     print(f"x0: {x0}")
