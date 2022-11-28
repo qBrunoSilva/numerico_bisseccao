@@ -44,7 +44,7 @@ class CLI:
 
     return parser.parse_args()
 
-  def bisect(self, f: float, a: float, b: float, tol: float):
+  def bisect(self, f: any, a: float, b: float, tol: float):
     iteracao = 0
 
     fa = f(a)
