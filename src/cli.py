@@ -24,7 +24,6 @@ class CLI:
       nargs="?",
     )
 
-    
     parser.add_argument( 
       "--x0",
       type=str,
@@ -42,7 +41,6 @@ class CLI:
       type=str,
       help="Tolerância",
     )
-
 
     return parser.parse_args()
 
@@ -71,7 +69,7 @@ class CLI:
 
         if abs(b-a) < tol: return c, iteracao
          
-  def format_function(self, f): 
+  def format_function(self, f: str) -> str: 
     f = f.replace("^", "**")
     f = f.replace("sen", "sin")
     f = f.replace("ln", "log") 
